@@ -1,1 +1,7 @@
 django
+PyMuPDF
+langchain 
+openai
+python-dotenv
+langchain_community
+langchain-openai
