@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Cookbook</title>
+</head>
+<body>
+    <h1>Upload Your Cookbook</h1>
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="cookbook_file" accept=".txt,.pdf,.json" required>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
