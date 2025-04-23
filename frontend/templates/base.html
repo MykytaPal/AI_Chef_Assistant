@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chef Assistant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #ff704d;
+      color: white;
+      padding: 1rem 2rem;
+      position: relative;
+      text-align: center;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    #layout {
+      display: flex;
+      flex: 1;
+    }
+
+    #sidebar {
+      width: 200px;
+      background-color: #f2f2f2;
+      padding-top: 2rem;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #sidebar a {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      color: #333;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    #sidebar a i {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+
+    #sidebar a:hover {
+      color: #ff704d;
+    }
+
+    .active-link {
+      font-weight: bold;
+      color: #ff704d !important;
+    }
+
+    #main-content-wrapper {
+      flex: 1;
+    }
+
+    #main-content {
+      padding: 2rem;
+    }
+
+    footer {
+      background-color: #f2f2f2;
+      height: 80px;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="{% url 'upload_cookbook' %}">AI Chef Assistant</a>
+  </header>
+
+  <div id="layout">
+    <nav id="sidebar">
+      <a href="{% url 'upload_cookbook' %}" title="Upload Cookbook"
+         class="{% if request.path == '/' %}active-link{% endif %}">
+        <i class="fas fa-upload"></i>
+        <span>Upload Cookbook</span>
+      </a>
+
+      <a href="{% url 'set_preferences' %}" title="User Preferences"
+         class="{% if request.path == '/preferences/' %}active-link{% endif %}">
+        <i class="fas fa-sliders-h"></i>
+        <span>User Preferences</span>
+      </a>
+    </nav>
+
+    <div id="main-content-wrapper">
+      <main id="main-content">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+
+  <footer>
+    <!-- Empty footer -->
+  </footer>
+
+</body>
+</html>
