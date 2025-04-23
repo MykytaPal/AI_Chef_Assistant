@@ -4,9 +4,9 @@
 
 1. Create virtual env: python3.12 -m venv .venv
 2. Go into virtual env: source .venv/bin/activate
-3. Install requirements: pip install requirements.txt
-4. Create env file: touch .env
+3. Install requirements: pip install -r requirements.txt
 
 ## To run the project
 
-1. python manage.py runserver
+1. Go into virtual env: source .venv/bin/activate
+2. Start the project: python manage.py runserver
