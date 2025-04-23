@@ -13,5 +13,8 @@
         <input type="file" name="cookbook_file" accept=".txt,.pdf,.json" required>
         <button type="submit">Upload</button>
     </form>
+    <form action="{% url 'set_preferences' %}">
+        <button type="submit">Set Preferences</button>
+    </form>
 </body>
 </html>
