@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Available Recipes</h1>
+
+  {% if message %}
+    <p style="color: red;">{{ message }}</p>
+  {% endif %}
+
+  {% if recipe_names %}
+    <ul>
+      {% for name in recipe_names %}
+        <li>
+          <a href="#" onclick="fetchGroceryList('{{ name }}'); return false;">{{ name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recipes available. Please upload a cookbook first.</p>
+  {% endif %}
+
+  <div id="grocery-output" style="margin-top: 2rem;"></div>
+
+  <script>
+    function fetchGroceryList(recipeName) {
+      fetch(`/grocery-list/${encodeURIComponent(recipeName)}/`, {
+        headers: {
+          "x-api-key": "{{ api_key }}"
+        }
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Invalid response");
+        return res.json();
+      })
+      .then(data => {
+        let html = `<h3>🛒 Grocery List for <em>${data.recipe}</em></h3><ul>`;
+        data.grocery_list.forEach(item => {
+          html += `<li>${item}</li>`;
+        });
+        html += "</ul>";
+        document.getElementById("grocery-output").innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById("grocery-output").innerHTML =
+          `<p style="color: red;">Error loading grocery list. Make sure the cookbook is uploaded and try again.</p>`;
+        console.error(err);
+      });
+    }
+  </script>
+{% endblock %}
