@@ -9,13 +9,12 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
     header {
@@ -23,6 +22,12 @@
       color: white;
       padding: 1rem 2rem;
       text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      z-index: 1000;
     }
 
     header a {
@@ -34,16 +39,23 @@
 
     #layout {
       display: flex;
-      flex: 1;
+      height: calc(100vh - 120px); /* 60 header + 60 footer */
+      margin-top: 60px;
+      margin-bottom: 60px;
     }
 
     #sidebar {
       width: 200px;
       background-color: #f2f2f2;
-      padding-top: 2rem;
+      padding-top: 1rem;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
+      position: fixed;
+      top: 60px;
+      bottom: 60px;
+      left: 0;
+      overflow-y: auto;
     }
 
     #sidebar a {
@@ -70,19 +82,27 @@
     }
 
     #main-content-wrapper {
+      margin-left: 200px;
       flex: 1;
+      overflow-y: auto;
+      padding: 2rem;
     }
 
     #main-content {
-      padding: 2rem;
+      padding-bottom: 2rem;
     }
 
     footer {
       background-color: #f2f2f2;
-      height: 80px;
+      height: 60px;
       width: 100%;
       text-align: center;
       padding: 1rem;
+      line-height: 1.5;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
 
     .message {
@@ -99,23 +119,29 @@
 
   <div id="layout">
     <nav id="sidebar">
-      <a href="{% url 'upload_cookbook' %}" title="Upload Cookbook"
-         class="{% if request.path == '/' %}active-link{% endif %}">
-        <i class="fas fa-upload"></i>
-        <span>Upload Cookbook</span>
-      </a>
+        <a href="{% url 'upload_cookbook' %}" title="Upload Cookbook"
+            class="{% if request.path == '/' %}active-link{% endif %}">
+            <i class="fas fa-upload"></i>
+            <span>Upload Cookbook</span>
+        </a>
 
-      <a href="{% url 'set_preferences' %}" title="User Preferences"
-         class="{% if request.path == '/preferences/' %}active-link{% endif %}">
-        <i class="fas fa-sliders-h"></i>
-        <span>User Preferences</span>
-      </a>
+        <a href="{% url 'set_preferences' %}" title="User Preferences"
+            class="{% if request.path == '/preferences/' %}active-link{% endif %}">
+            <i class="fas fa-sliders-h"></i>
+            <span>User Preferences</span>
+        </a>
 
-      <a href="{% url 'recipe_list' %}" title="Grocery List"
-         class="{% if '/grocery-list' in request.path or '/recipes' in request.path %}active-link{% endif %}">
-        <i class="fas fa-shopping-cart"></i>
-        <span>Grocery List</span>
-      </a>
+        <a href="{% url 'recipe_list' %}" title="Grocery List"
+            class="{% if '/grocery-list' in request.path or '/recipes' in request.path %}active-link{% endif %}">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Grocery List</span>
+        </a>
+
+        <a href="{% url 'recipe_library' %}" title="Recipe Library"
+            class="{% if request.path == '/recipe-library/' %}active-link{% endif %}">
+            <i class="fas fa-book-open"></i>
+            <span>Recipe Library</span>
+        </a>
     </nav>
 
     <div id="main-content-wrapper">

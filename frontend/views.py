@@ -3,8 +3,10 @@ import json
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponseForbidden
 from django.contrib import messages
+from django.conf import settings
 from agents.orchestration_agent import OrchestrationAgent
 from agents.grocery_list_generation_agent import GroceryListGenerationAgent
+from agents.recipe_library_agent import RecipeLibraryAgent
 
 COOKBOOK_PATH = "data/cookbook_data.json"
 EXPECTED_API_KEY = os.environ.get("API_KEY")
@@ -59,3 +61,9 @@ def grocery_list_view(request, recipe_name):
         "recipe": recipe_name,
         "grocery_list": grocery_list
     })
+    
+def recipe_library(request):
+    data_file = os.path.join(settings.BASE_DIR, 'data', 'cookbook_data.json')
+    agent = RecipeLibraryAgent(data_file)
+    recipes = agent.load_recipes()
+    return render(request, 'recipe_library.html', {'recipes': recipes})
