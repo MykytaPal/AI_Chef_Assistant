@@ -22,7 +22,6 @@
       background-color: #ff704d;
       color: white;
       padding: 1rem 2rem;
-      position: relative;
       text-align: center;
     }
 
@@ -43,7 +42,6 @@
       background-color: #f2f2f2;
       padding-top: 2rem;
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
     }
@@ -54,7 +52,6 @@
       padding: 0.75rem 1rem;
       color: #333;
       text-decoration: none;
-      white-space: nowrap;
     }
 
     #sidebar a i {
@@ -85,6 +82,12 @@
       height: 80px;
       width: 100%;
       text-align: center;
+      padding: 1rem;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      color: red;
     }
   </style>
 </head>
@@ -107,17 +110,29 @@
         <i class="fas fa-sliders-h"></i>
         <span>User Preferences</span>
       </a>
+
+      <a href="{% url 'recipe_list' %}" title="Grocery List"
+         class="{% if '/grocery-list' in request.path or '/recipes' in request.path %}active-link{% endif %}">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Grocery List</span>
+      </a>
     </nav>
 
     <div id="main-content-wrapper">
       <main id="main-content">
+        {% if messages %}
+          {% for message in messages %}
+            <p class="message">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+
         {% block content %}{% endblock %}
       </main>
     </div>
   </div>
 
   <footer>
-    <!-- Empty footer -->
+    &copy; 2025 AI Chef Assistant
   </footer>
 
 </body>

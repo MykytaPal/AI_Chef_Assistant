@@ -3,3 +3,24 @@ __pycache__/
 *.pyc
 db.sqlite3
 *.log
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# VS Code settings
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python environment files
+*.env
+*.venv
