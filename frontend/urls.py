@@ -10,6 +10,8 @@ urlpatterns = [
 
     # Dynamic grocery list fetch by recipe name
     path('grocery-list/<str:recipe_name>/', views.grocery_list_view, name='grocery_list'),
+    
+    path('recipe-library/', views.recipe_library, name='recipe_library'),
 ]
 
 

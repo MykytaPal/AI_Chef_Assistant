@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Recipe Library</h1>
+
+  {% if recipes %}
+    <!-- 🔍 Search bar -->
+    <input type="text" id="searchBar" onkeyup="filterRecipes()" placeholder="Search recipes..." 
+           style="width: 100%; padding: 0.5rem 1rem; margin-bottom: 1.5rem; border: 2px solid #ccc; border-radius: 6px; font-size: 1rem;">
+
+    <ul id="recipeList" style="list-style: none; padding: 0;">
+      {% for recipe in recipes %}
+        <li class="recipe-entry" 
+            data-title="{{ recipe.name|lower }}" 
+            data-ingredients="{{ recipe.ingredients|join:' '|lower }}" 
+            style="margin-bottom: 1rem;">
+          
+          <div style="border: 1px solid #ff704d; border-radius: 6px; overflow: hidden;">
+            <button onclick="toggleDetails('recipe-{{ forloop.counter }}')" 
+                    style="
+                      background-color: white;
+                      color: #333;
+                      border: none;
+                      padding: 0.75rem 1rem;
+                      font-size: 1rem;
+                      cursor: pointer;
+                      width: 100%;
+                      text-align: left;
+                      transition: background-color 0.2s;
+                    "
+                    onmouseover="this.style.backgroundColor='#fff0ea';"
+                    onmouseout="this.style.backgroundColor='white';">
+              {{ recipe.name }}
+            </button>
+
+            <div id="recipe-{{ forloop.counter }}" 
+                 style="display: none; padding: 1rem; background-color: #f9f9f9; border-top: 1px solid #eee;">
+              <strong>Ingredients:</strong>
+              <ul>
+                {% for ingredient in recipe.ingredients %}
+                  <li>{{ ingredient }}</li>
+                {% endfor %}
+              </ul>
+
+              <strong>Instructions:</strong>
+              <p>{{ recipe.instructions }}</p>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No recipes found. Upload a cookbook first.</p>
+  {% endif %}
+
+  <script>
+    function toggleDetails(id) {
+      const el = document.getElementById(id);
+      el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+    }
+
+    function filterRecipes() {
+      const input = document.getElementById('searchBar').value.toLowerCase();
+      const recipes = document.getElementsByClassName('recipe-entry');
+
+      for (let i = 0; i < recipes.length; i++) {
+        const title = recipes[i].getAttribute('data-title');
+        const ingredients = recipes[i].getAttribute('data-ingredients');
+        const match = title.includes(input) || ingredients.includes(input);
+        recipes[i].style.display = match ? '' : 'none';
+      }
+    }
+  </script>
+{% endblock %}
