@@ -1,0 +1,224 @@
+[
+  {
+    "name": "Breakfast Favorites",
+    "ingredients": [
+      "1 \u00bd cups liquid like water, milk, or juice (can add more or less depending on how smooth you want your smoothie to be)",
+      "1 \u00bd to 2 cups of your favorite fruits, fresh or frozen",
+      "\u00bd cup Greek yogurt (plain or flavored)",
+      "\u00bd cup ice for more liquid and texture",
+      "Optional add ins:",
+      "- \u00bd cup leafy greens",
+      "- 1 tsp chia seeds and/or flax seeds",
+      "- Sweetener of your choice",
+      "- 1 scoop protein powder",
+      "- 1 tbsp. peanut or nut butter"
+    ],
+    "instructions": "Customize your smoothie with your preferred ingredients. Blend all ingredients together until smooth. Enjoy your personalized smoothie!"
+  },
+  {
+    "name": "Chocolate Banana Breakfast Shake",
+    "ingredients": [
+      "1 cup skim or 1% milk",
+      "1 serving of Carnation Instant Breakfast, Ovaltine, chocolate protein powder or other chocolate powder that can be added to milk",
+      "\u00bd banana",
+      "\u00bc cup dry oats",
+      "Small handful of nuts (walnuts, almonds, or pecans are delicious)"
+    ],
+    "instructions": "1. Put all ingredients in blender. 2. Blend until smooth (it will remain slightly lumpy because of the oats and nuts). 3. Enjoy your chocolate banana breakfast shake!"
+  },
+  {
+    "name": "Vanilla-Peach Smoothie",
+    "ingredients": [
+      "2 cups yogurt",
+      "1 \u00bd cup orange juice, or as much as needed",
+      "\u00bd tsp vanilla extract",
+      "\u00bd frozen banana, optional",
+      "2 cups unsweetened frozen sliced or chopped peaches"
+    ],
+    "instructions": "1. Put the yogurt, juice, vanilla, and banana in the blender first, followed by the peaches. 2. Pulse blender to start, then turn on high to smooth. If the mixture is stiff, add more liquid. 3. Serve right away."
+  },
+  {
+    "name": "Multi-Fruit Smoothie",
+    "ingredients": [
+      "2 cups frozen unsweetened strawberries",
+      "\u00bd cup blueberries",
+      "1 banana cut in chunks",
+      "\u00bd kiwi, sliced",
+      "2 cups fresh spinach",
+      "\u00bd cup ice cubes",
+      "1 cup fat-free milk",
+      "\u00bd cup 100-percent apple juice"
+    ],
+    "instructions": "Combine strawberries, blueberries, banana, kiwi, spinach, ice cubes, fat-free milk and apple juice in blender. Blend until smooth. Enjoy your multi-fruit smoothie!"
+  },
+  {
+    "name": "Green Monster Smoothie",
+    "ingredients": [
+      "1 cup fat-free milk (or milk of your choice)",
+      "\u00bd cup fat-free plain yogurt",
+      "1 banana, frozen",
+      "1 tbsp. natural peanut butter",
+      "2 cups fresh spinach",
+      "1 cup ice cubes (optional)"
+    ],
+    "instructions": "Blend all ingredients until smooth."
+  },
+  {
+    "name": "Overnight Oats",
+    "ingredients": [
+      "1/3 cup plain Greek yogurt",
+      "\u00bd cup rolled oats",
+      "2/3 cup milk of choice (if using soy, rice, almond, or another non-dairy milk use unsweetened)",
+      "1 tbsp. chia seeds or ground flax seeds",
+      "\u00bd tsp. vanilla extract",
+      "Pinch of salt",
+      "Up to 2 tbsp. honey or maple syrup",
+      "Optional Mix-ins (fruit, nut butter, cocoa powder, coconut, nuts)"
+    ],
+    "instructions": "1. Mix all ingredients in a bowl or in the jar you\u2019ll be storing them in. Pour or spoon the mixture into the storage container. 2. Refrigerate for at least 4 hours, but up to 8 hours (usually overnight) for best results. 3. Overnight oats can be eaten cold or heated in the microwave."
+  },
+  {
+    "name": "Peanut Butter Overnight Oats",
+    "ingredients": [
+      "\u00bd cup unsweetened plain almond milk (or milk of your choice)",
+      "\u00be tbsp. chia seeds",
+      "2 tbsp. natural peanut butter, almond butter, or nut butter of your choice (can be creamy or chunky)",
+      "1 tbsp. maple syrup (can substitute for your preferred sweetener)",
+      "\u00bd cup rolled oats",
+      "Optional toppings (bananas, strawberries, other fruit, granola, ground flax seeds or chia seeds)"
+    ],
+    "instructions": "1. Mix all ingredients together. 2. Put mixture into a storage container with a lid. Make sure the oats are covered by the milk. Store in the refrigerator overnight. 3. Add extra toppings right before eating. Can be eaten cold or warmed in the microwave."
+  },
+  {
+    "name": "Instant Oatmeal Packets",
+    "ingredients": [
+      "\u00be cup rolled oats",
+      "1 \u00bd cup quick oats",
+      "\u00bd cup powdered milk",
+      "\u00bd cup sugar (white or brown)",
+      "1 tsp salt (scant)",
+      "1 tsp cinnamon",
+      "Ideas for toppings: dried fruit, fresh fruit, canned fruit, nuts, seeds, mini chocolate chips, peanut butter, jam, etc."
+    ],
+    "instructions": "1. Blend dry rolled oats in a blender, pulsing until oats are powdery. 2. In a mixing bowl combine powdery oats and remaining ingredients. 3. To use, combine \u00bd cup instant oatmeal and 2/3 cup water in a microwaveable bowl and microwave for 2 minutes. Add toppings if desired. 4. If desired, put mix into individual baggies, \u00bd cup in each. Makes 6 packets."
+  },
+  {
+    "name": "Tasty Toast",
+    "ingredients": [
+      "Nut butter",
+      "Sliced bananas",
+      "Honey",
+      "Egg",
+      "Avocado",
+      "Salt",
+      "Pepper",
+      "Hummus",
+      "Cooked veggies",
+      "Nutella",
+      "Sliced fruit (strawberries, bananas)",
+      "Low-fat herbed cream cheese",
+      "Sliced cucumbers",
+      "Optional: jam, cheese, vegetables"
+    ],
+    "instructions": "1. Spread nut butter on a slice of toast. Put sliced bananas on top and drizzle with honey. 2. Cook an egg as desired. Mash avocado and spread it on toast. Place the egg on top and sprinkle with salt and pepper. 3. Top toast with hummus and cooked veggies. 4. Spread Nutella on toast and top with sliced fruit. 5. Spread low-fat herbed cream cheese on toast and top with sliced cucumbers. 6. Get creative with different toppings like jam, cheese, fruit, and vegetables."
+  },
+  {
+    "name": "Frozen Breakfast Burritos",
+    "ingredients": [
+      "12 flour tortillas",
+      "6 eggs",
+      "6 small potatoes",
+      "Grated cheese",
+      "Cooked bacon or sausage",
+      "Green pepper",
+      "Salsa"
+    ],
+    "instructions": "1. Scramble the eggs and saut\u00e9 the potatoes and green peppers. Cook the bacon or sausage. 2. Soften tortillas in the microwave. 3. Lay out tortillas and add filling ingredients. Roll up and wrap in plastic wrap, then place in a freezer bag. 4. In the morning, heat in the microwave for 3-5 minutes or until warmed."
+  },
+  {
+    "name": "Boiled Eggs",
+    "ingredients": [
+      "Eggs",
+      "Water"
+    ],
+    "instructions": "1. Fill a pot with about 4-5 cups of water (or more if your pot is larger) to cover the eggs completely. 2. Bring the water to a boil. 3. Carefully add the eggs to the boiling water with a spoon. 4. Boil for 10 minutes for hard-boiled eggs, 8-9 minutes for slightly softer yolks, or 6-7 minutes for soft-boiled eggs."
+  },
+  {
+    "name": "Pancakes",
+    "ingredients": [
+      "1 \u00bc cups flour",
+      "2 tsp. sugar",
+      "2 tsp. baking powder",
+      "1 beaten egg",
+      "1 cup milk",
+      "1 tbsp. oil",
+      "\u00bd tsp salt"
+    ],
+    "instructions": "1. Stir together flour, sugar, baking powder, and salt. 2. Combine egg, milk, and oil in a separate bowl. Add to flour mixture and stir until blended. 3. Cook on a hot, greased skillet to make eight 4-inch pancakes."
+  },
+  {
+    "name": "Basic Muffins",
+    "ingredients": [
+      "1 \u00be c flour",
+      "\u00bc cup sugar or mashed ripe bananas",
+      "2 tsp. baking powder",
+      "\u00bd tsp. salt",
+      "\u00be cup milk",
+      "1/3 cup oil",
+      "1 egg, lightly beaten"
+    ],
+    "instructions": "1. Mix flour, sugar, baking powder, and salt. 2. Combine milk, oil, and egg in a separate bowl. Add to flour mixture. 3. Bake in muffin tins for grab-and-go breakfast or snack."
+  },
+  {
+    "name": "Blueberry Muffins",
+    "ingredients": [
+      "1 \u00be cup flour",
+      "1 tbsp. baking powder",
+      "\u00bd tsp salt",
+      "1 egg",
+      "1 cup fresh or frozen blueberries",
+      "1 tsp. zested lemon peel (optional)"
+    ],
+    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, and egg. Make a well in the center of the dry ingredients. 4. Pour in the wet ingredients and stir until moistened, leaving the mixture slightly lumpy. 5. Fill sprayed muffin pans about 2/3 full. Bake 20-25 minutes. Makes 10-12."
+  },
+  {
+    "name": "Cranberry Orange Muffins",
+    "ingredients": [
+      "1 \u00be cup flour",
+      "1 tbsp. baking powder",
+      "\u00bd tsp salt",
+      "1 egg",
+      "1 cup fresh, frozen, or dried cranberries",
+      "\u00bc cup more sugar",
+      "Orange zest to taste"
+    ],
+    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, and egg. Make a well in the center of the dry ingredients. 4. Pour in the wet ingredients and stir until moistened, leaving the mixture slightly lumpy. 5. Fold in cranberries and orange zest. Fill sprayed muffin pans about 2/3 full. Bake 20-25 minutes. Makes 10-12."
+  },
+  {
+    "name": "Pumpkin Muffins",
+    "ingredients": [
+      "1 \u00be cup flour",
+      "1 tbsp. baking powder",
+      "\u00bd tsp salt",
+      "1 egg",
+      "1/3 cup sugar",
+      "\u00bd cup canned pumpkin",
+      "\u00bd tsp ground cinnamon",
+      "\u00bd tsp ground nutmeg"
+    ],
+    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, egg, and canned pumpkin. Make a well in the center of the dry ingredients. 4. Pour in the wet ingredients and stir until moistened, leaving the mixture slightly lumpy. 5. Fill sprayed muffin pans about 2/3 full. Bake 20-25 minutes. Makes 10-12."
+  },
+  {
+    "name": "Waffles",
+    "ingredients": [
+      "1 \u00be cup flour",
+      "1 tbsp. baking powder",
+      "\u00bd tsp salt",
+      "2 egg yolks",
+      "1 \u00be cup milk",
+      "\u00bd cup cooking oil or plain low-fat yogurt",
+      "2 egg whites"
+    ],
+    "instructions": "1. In a large mixing bowl, stir together flour, baking powder, and salt. 2. In a small mixing bowl, beat egg yolks with a fork. Beat in milk and cooking oil or yogurt. 3. Add wet ingredients to dry ingredients and stir until blended but still slightly lumpy. 4. In a smaller bowl, beat egg whites until stiff peaks form. 5. Gently fold beaten egg whites into the flour-milk mixture. 6. Pour batter onto preheated waffle iron. Makes about 7 round waffles or 3 nine-inch waffles."
+  }
+]

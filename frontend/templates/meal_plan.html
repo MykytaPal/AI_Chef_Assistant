@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Weekly Meal Plan</h1>
+
+  {% if day_blocks %}
+    <div class="meal-plan-container">
+      {% for block in day_blocks %}
+        <div class="day-card">
+          {% for line in block.splitlines %}
+            {% if forloop.first %}
+              <h2>{{ line|slice:":-1" }}</h2>
+            {% else %}
+              <p>{{ line }}</p>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No meal plan available yet.</p>
+  {% endif %}
+
+  <style>
+    .meal-plan-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .day-card {
+      background-color: #fff9f5;
+      border: 1px solid #ffd2c2;
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .day-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .day-card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #ff704d;
+      border-bottom: 1px solid #ffe0d6;
+      padding-bottom: 0.5rem;
+    }
+
+    .day-card p {
+      margin: 0.25rem 0;
+      font-size: 0.95rem;
+    }
+  </style>
+{% endblock %}

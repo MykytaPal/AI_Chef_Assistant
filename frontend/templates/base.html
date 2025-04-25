@@ -142,6 +142,12 @@
             <i class="fas fa-book-open"></i>
             <span>Recipe Library</span>
         </a>
+
+        <a href="{% url 'meal_plan' %}" title="Meal Plan"
+            class="{% if request.path == '/meal-plan/' %}active-link{% endif %}">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Meal Plan</span>
+        </a>
     </nav>
 
     <div id="main-content-wrapper">
