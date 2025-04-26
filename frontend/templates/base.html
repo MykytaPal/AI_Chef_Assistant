@@ -111,6 +111,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -119,29 +120,35 @@
 
   <div id="layout">
     <nav id="sidebar">
-        <a href="{% url 'upload_cookbook' %}" title="Upload Cookbook"
-            class="{% if request.path == '/' %}active-link{% endif %}">
-            <i class="fas fa-upload"></i>
-            <span>Upload Cookbook</span>
-        </a>
+      <a href="{% url 'upload_cookbook' %}" title="Upload Cookbook"
+         class="{% if request.path == '/' %}active-link{% endif %}">
+         <i class="fas fa-upload"></i>
+         <span>Upload Cookbook</span>
+      </a>
 
-        <a href="{% url 'set_preferences' %}" title="User Preferences"
-            class="{% if request.path == '/preferences/' %}active-link{% endif %}">
-            <i class="fas fa-sliders-h"></i>
-            <span>User Preferences</span>
-        </a>
+      <a href="{% url 'set_preferences' %}" title="User Preferences"
+         class="{% if request.path == '/preferences/' %}active-link{% endif %}">
+         <i class="fas fa-sliders-h"></i>
+         <span>User Preferences</span>
+      </a>
 
-        <a href="{% url 'recipe_list' %}" title="Grocery List"
-            class="{% if '/grocery-list' in request.path or '/recipes' in request.path %}active-link{% endif %}">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Grocery List</span>
-        </a>
+      <a href="{% url 'meal_plan' %}" title="Meal Plan"
+         class="{% if request.path == '/meal-plan/' %}active-link{% endif %}">
+         <i class="fas fa-calendar-alt"></i>
+         <span>Meal Plan</span>
+      </a>
 
-        <a href="{% url 'recipe_library' %}" title="Recipe Library"
-            class="{% if request.path == '/recipe-library/' %}active-link{% endif %}">
-            <i class="fas fa-book-open"></i>
-            <span>Recipe Library</span>
-        </a>
+      <a href="{% url 'recipe_list' %}" title="Grocery List"
+         class="{% if '/grocery-list' in request.path or '/recipes' in request.path %}active-link{% endif %}">
+         <i class="fas fa-shopping-cart"></i>
+         <span>Grocery List</span>
+      </a>
+
+      <a href="{% url 'recipe_library' %}" title="Recipe Library"
+         class="{% if request.path == '/recipe-library/' %}active-link{% endif %}">
+         <i class="fas fa-book-open"></i>
+         <span>Recipe Library</span>
+      </a>
     </nav>
 
     <div id="main-content-wrapper">
