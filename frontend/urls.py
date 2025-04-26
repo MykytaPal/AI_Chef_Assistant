@@ -8,4 +8,7 @@ urlpatterns = [
     path('weekly-grocery-list/', views.weekly_grocery_list_view, name='weekly_grocery_list'),
     path('grocery-list/', views.weekly_grocery_list_view, name='weekly_grocery_list'),
     path('recipe-library/', views.recipe_library, name='recipe_library'),
+    path('instructions/', views.instruction_delivery_view, name='instruction_delivery'),
+    path('weekly-instructions/', views.weekly_instructions_view, name='weekly_instructions'),  # ✅ ADD THIS
 ]
+
