@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>📝 Weekly Cooking Instructions</h1>
+
+  <div style="margin-bottom: 2rem;">
+    <button onclick="fetchWeeklyInstructions()">🧠 Generate Cooking Instructions</button>
+  </div>
+
+  <div id="weekly-instructions-output" style="margin-top: 1rem;"></div>
+
+  <style>
+    .day-card {
+      background-color: #fff9f5;
+      border: 1px solid #ffd2c2;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .day-title {
+      font-size: 1.5rem;
+      color: #ff704d;
+      margin-bottom: 1rem;
+    }
+
+    .meal-title {
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .meal-instruction {
+      margin-left: 1rem;
+      color: #333;
+    }
+  </style>
+
+  <script>
+    function fetchWeeklyInstructions() {
+      const output = document.getElementById("weekly-instructions-output");
+      output.innerHTML = "<p>Generating weekly cooking instructions...</p>";
+
+      fetch('/weekly-instructions/', {
+        headers: {
+          "x-api-key": "{{ api_key }}"
+        }
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to generate");
+        return res.json();
+      })
+      .then(data => {
+        if (data.weekly_instructions && data.weekly_instructions.length > 0) {
+          let html = "";
+          data.weekly_instructions.forEach(dayBlock => {
+            html += `
+              <div class="day-card">
+                <div class="day-title">${dayBlock.day}</div>
+                <div class="meal-section">
+                  <div class="meal-title">🍳 Breakfast</div>
+                  <div class="meal-instruction">${dayBlock.breakfast}</div>
+                </div>
+                <div class="meal-section">
+                  <div class="meal-title">🥪 Lunch</div>
+                  <div class="meal-instruction">${dayBlock.lunch}</div>
+                </div>
+                <div class="meal-section">
+                  <div class="meal-title">🍽️ Dinner</div>
+                  <div class="meal-instruction">${dayBlock.dinner}</div>
+                </div>
+              </div>
+            `;
+          });
+          output.innerHTML = html;
+        } else {
+          output.innerHTML = `<p style="color: red;">No instructions found for this week.</p>`;
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        output.innerHTML = `<p style="color: red;">Failed to generate instructions.</p>`;
+      });
+    }
+  </script>
+
+{% endblock %}
