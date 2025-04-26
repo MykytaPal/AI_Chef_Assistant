@@ -7,25 +7,10 @@
     <p style="color: red;">{{ message }}</p>
   {% endif %}
 
-  {% if recipe_names %}
-    <h2>Grocery List by Recipe</h2>
-    <ul>
-      {% for name in recipe_names %}
-        <li>
-          <a href="#" onclick="fetchGroceryList('{{ name }}'); return false;">{{ name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No recipes available. Please upload a cookbook first.</p>
-  {% endif %}
-
-  <div id="grocery-output" style="margin-top: 2rem;"></div>
-
   <hr style="margin: 2rem 0;">
 
-  <h2>Weekly Grocery List (with quantities)</h2>
-  <button onclick="fetchWeeklyGroceryList()">🧠 Generate with GenAI</button>
+  <h2>Weekly Grocery List (Combined with Quantities)</h2>
+  <button onclick="fetchWeeklyGroceryList()">🧠 Generate Weekly Grocery List</button>
   <div id="weekly-grocery-output" style="margin-top: 1rem;"></div>
 
   <style>
@@ -38,13 +23,11 @@
       max-width: 600px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-
     .grocery-list li {
       margin-bottom: 0.5rem;
       padding-left: 1.2rem;
       position: relative;
     }
-
     .grocery-list li::before {
       content: "🛍️";
       position: absolute;
@@ -53,36 +36,9 @@
   </style>
 
   <script>
-    function fetchGroceryList(recipeName) {
-      const output = document.getElementById("grocery-output");
-      output.innerHTML = "<p>Loading grocery list...</p>";
-
-      fetch(`/grocery-list/${encodeURIComponent(recipeName)}/`, {
-        headers: {
-          "x-api-key": "{{ api_key }}"
-        }
-      })
-      .then(res => {
-        if (!res.ok) throw new Error("Invalid response");
-        return res.json();
-      })
-      .then(data => {
-        let html = `<h3>🧾 Grocery List for <em>${data.recipe}</em></h3><ul class="grocery-list">`;
-        data.grocery_list.forEach(item => {
-          html += `<li>${item}</li>`;
-        });
-        html += "</ul>";
-        output.innerHTML = html;
-      })
-      .catch(err => {
-        console.error(err);
-        output.innerHTML = `<p style="color: red;">Error loading grocery list.</p>`;
-      });
-    }
-
     function fetchWeeklyGroceryList() {
       const output = document.getElementById("weekly-grocery-output");
-      output.innerHTML = "<p>Generating grocery list with GenAI...</p>";
+      output.innerHTML = "<p>Generating full weekly grocery list...</p>";
 
       fetch('/weekly-grocery-list/', {
         headers: {
@@ -90,7 +46,7 @@
         }
       })
       .then(res => {
-        if (!res.ok) throw new Error("Failed");
+        if (!res.ok) throw new Error("Failed to generate");
         return res.json();
       })
       .then(data => {
@@ -102,12 +58,12 @@
           html += "</ul>";
           output.innerHTML = html;
         } else {
-          output.innerHTML = `<p style="color: red;">No grocery list found. Please generate a meal plan first.</p>`;
+          output.innerHTML = `<p style="color: red;">No grocery list found for the week.</p>`;
         }
       })
       .catch(err => {
         console.error(err);
-        output.innerHTML = `<p style="color: red;">Could not generate weekly grocery list.</p>`;
+        output.innerHTML = `<p style="color: red;">Failed to generate weekly grocery list.</p>`;
       });
     }
   </script>

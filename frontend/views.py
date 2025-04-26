@@ -16,11 +16,11 @@ load_dotenv()
 
 # Paths and Keys
 COOKBOOK_PATH = os.path.join(settings.BASE_DIR, "data", "cookbook_data.json")
-EXPECTED_API_KEY = os.environ.get("API_KEY")
+EXPECTED_API_KEY = os.getenv("API_KEY")
+DEBUG = settings.DEBUG  # 🔥 Add this
 
 # Instantiate orchestration layer
 orchestrator = OrchestrationAgent()
-
 
 # === View: Upload Cookbook ===
 def upload_cookbook(request):
@@ -35,12 +35,10 @@ def upload_cookbook(request):
             messages.error(request, f"❌ Failed to upload cookbook: {str(e)}")
     return render(request, 'upload.html', context)
 
-
 # === View: Set Preferences ===
 def set_preferences(request):
     context = orchestrator.handle_preferences(request)
     return render(request, 'preferences.html', context)
-
 
 # === View: List Recipes from Cookbook ===
 def recipe_list_view(request):
@@ -52,8 +50,9 @@ def recipe_list_view(request):
         })
 
     try:
-        agent = GroceryListGenerationAgent(COOKBOOK_PATH)
-        recipe_names = agent.get_all_recipe_names()
+        agent = RecipeLibraryAgent(COOKBOOK_PATH)
+        recipes = agent.load_recipes()
+        recipe_names = [recipe["name"] for recipe in recipes]
     except Exception as e:
         recipe_names = []
         print(f"[❌] Failed to load recipes: {e}")
@@ -63,31 +62,36 @@ def recipe_list_view(request):
         "api_key": EXPECTED_API_KEY
     })
 
-
 # === View: Generate Grocery List for Selected Recipe ===
 def grocery_list_view(request, recipe_name):
     api_key = request.headers.get("x-api-key")
-    if api_key != EXPECTED_API_KEY:
+    if not DEBUG and api_key != EXPECTED_API_KEY:  # 🔥 Skip key check if DEBUG=True
         return HttpResponseForbidden("Invalid API Key")
 
     if not request.session.get("cookbook_uploaded") or not os.path.exists(COOKBOOK_PATH):
         return JsonResponse({"error": "No cookbook uploaded"}, status=400)
 
-    agent = GroceryListGenerationAgent(COOKBOOK_PATH)
-    grocery_list = agent.generate_grocery_list_for_recipe(recipe_name)
-    return JsonResponse({
-        "recipe": recipe_name,
-        "grocery_list": grocery_list
-    })
-
+    try:
+        agent = GroceryListGenerationAgent(COOKBOOK_PATH)  # Pass cookbook path ✅
+        grocery_list = agent.generate_grocery_list_for_recipe(recipe_name)
+        return JsonResponse({
+            "recipe": recipe_name,
+            "grocery_list": grocery_list
+        })
+    except Exception as e:
+        print(f"[❌] Error generating grocery list for {recipe_name}: {e}")
+        return JsonResponse({"error": "Failed to generate grocery list"}, status=500)
 
 # === View: Recipe Library View ===
 def recipe_library(request):
-    data_file = os.path.join(settings.BASE_DIR, 'data', 'cookbook_data.json')
-    agent = RecipeLibraryAgent(data_file)
-    recipes = agent.load_recipes()
-    return render(request, 'recipe_library.html', {'recipes': recipes})
+    try:
+        agent = RecipeLibraryAgent(COOKBOOK_PATH)
+        recipes = agent.load_recipes()
+    except Exception as e:
+        recipes = []
+        print(f"[❌] Failed to load recipe library: {e}")
 
+    return render(request, 'recipe_library.html', {'recipes': recipes})
 
 # === View: Generate Meal Plan ===
 def meal_plan_view(request):
@@ -95,23 +99,21 @@ def meal_plan_view(request):
         messages.error(request, "Please upload a cookbook first.")
         return render(request, "upload.html")
 
-    cookbook_path = os.path.join(settings.BASE_DIR, "data", "cookbook_data.json")
     try:
-        agent = MealPlanGenerationAgent(cookbook_path)
+        agent = MealPlanGenerationAgent(COOKBOOK_PATH)
         raw_meal_plan = agent.generate_weekly_meal_plan()
         day_blocks = [block.strip() for block in raw_meal_plan.split("\n\n") if block.strip()]
-        request.session['last_generated_meal_plan'] = raw_meal_plan  # ✅ Save to session
+        request.session['last_generated_meal_plan'] = raw_meal_plan  # Save full text for GenAI
     except Exception as e:
         day_blocks = []
         messages.error(request, f"Failed to generate meal plan: {str(e)}")
 
     return render(request, "meal_plan.html", {"day_blocks": day_blocks})
 
-
-# === View: Weekly Grocery List using GenAI agent ===
+# === View: Weekly Grocery List (with quantities using GenAI) ===
 def weekly_grocery_list_view(request):
     api_key = request.headers.get("x-api-key")
-    if api_key != EXPECTED_API_KEY:
+    if not DEBUG and api_key != EXPECTED_API_KEY:  # 🔥 Skip key check if DEBUG=True
         return HttpResponseForbidden("Invalid API Key")
 
     meal_plan_text = request.session.get("last_generated_meal_plan")
@@ -119,9 +121,9 @@ def weekly_grocery_list_view(request):
         return JsonResponse({"error": "No meal plan found"}, status=400)
 
     try:
-        agent = GroceryListGenerationAgent()
-        grocery_dict = agent.generate_grocery_list(meal_plan_text)
+        agent = GroceryListGenerationAgent()  # No need to pass cookbook here for weekly list
+        grocery_dict = agent.generate_weekly_grocery_list(meal_plan_text)
         return JsonResponse({"grocery_list": grocery_dict})
     except Exception as e:
-        print(f"[❌] Error generating grocery list: {e}")
+        print(f"[❌] Error generating weekly grocery list: {e}")
         return JsonResponse({"error": "Failed to generate grocery list"}, status=500)
