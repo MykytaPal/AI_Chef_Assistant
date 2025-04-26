@@ -1,87 +1,116 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>📝 Weekly Cooking Instructions</h1>
+  <h1>Weekly Cooking Instructions</h1>
 
-  <div style="margin-bottom: 2rem;">
-    <button onclick="fetchWeeklyInstructions()">🧠 Generate Cooking Instructions</button>
+  <form method="post" action="{% url 'weekly_instructions' %}">
+    {% csrf_token %}
+    <button type="button" onclick="fetchWeeklyInstructions()" 
+            style="padding: 0.5rem 1rem; background-color: #ff704d; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer;">
+      Generate Weekly Instructions
+    </button>
+  </form>
+
+  <div id="weekly-instructions-output" style="margin-top: 2rem;">
+    {% if weekly_instructions %}
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const initialData = {{ weekly_instructions|safe }};
+          renderInstructions(initialData);
+        });
+      </script>
+    {% else %}
+      <p>No instructions found yet. Click the button above to generate!</p>
+    {% endif %}
   </div>
-
-  <div id="weekly-instructions-output" style="margin-top: 1rem;"></div>
 
   <style>
     .day-card {
       background-color: #fff9f5;
       border: 1px solid #ffd2c2;
       border-radius: 12px;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      max-width: 700px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
 
     .day-title {
-      font-size: 1.5rem;
+      font-weight: bold;
+      font-size: 1.3rem;
       color: #ff704d;
+      border-bottom: 1px solid #ffd2c2;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .meal-section {
       margin-bottom: 1rem;
     }
 
     .meal-title {
       font-weight: bold;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
     }
 
     .meal-instruction {
       margin-left: 1rem;
-      color: #333;
+      font-size: 0.95rem;
     }
   </style>
 
   <script>
+    function renderInstructions(data) {
+      const output = document.getElementById("weekly-instructions-output");
+      if (data && data.length > 0) {
+        let html = "";
+        data.forEach(dayBlock => {
+          html += `
+            <div class="day-card">
+              <div class="day-title">${dayBlock.day}</div>
+              <div class="meal-section">
+                <div class="meal-title">🍳 Breakfast</div>
+                <div class="meal-instruction">${dayBlock.breakfast}</div>
+              </div>
+              <div class="meal-section">
+                <div class="meal-title">🥪 Lunch</div>
+                <div class="meal-instruction">${dayBlock.lunch}</div>
+              </div>
+              <div class="meal-section">
+                <div class="meal-title">🍽️ Dinner</div>
+                <div class="meal-instruction">${dayBlock.dinner}</div>
+              </div>
+            </div>
+          `;
+        });
+        output.innerHTML = html;
+      } else {
+        output.innerHTML = `<p style="color: red;">No instructions available for this week.</p>`;
+      }
+    }
+
     function fetchWeeklyInstructions() {
       const output = document.getElementById("weekly-instructions-output");
       output.innerHTML = "<p>Generating weekly cooking instructions...</p>";
 
-      fetch('/weekly-instructions/', {
+      fetch('{% url "weekly_instructions" %}', {
         headers: {
           "x-api-key": "{{ api_key }}"
         }
       })
       .then(res => {
-        if (!res.ok) throw new Error("Failed to generate");
+        if (!res.ok) throw new Error("Failed to generate instructions.");
         return res.json();
       })
       .then(data => {
         if (data.weekly_instructions && data.weekly_instructions.length > 0) {
-          let html = "";
-          data.weekly_instructions.forEach(dayBlock => {
-            html += `
-              <div class="day-card">
-                <div class="day-title">${dayBlock.day}</div>
-                <div class="meal-section">
-                  <div class="meal-title">🍳 Breakfast</div>
-                  <div class="meal-instruction">${dayBlock.breakfast}</div>
-                </div>
-                <div class="meal-section">
-                  <div class="meal-title">🥪 Lunch</div>
-                  <div class="meal-instruction">${dayBlock.lunch}</div>
-                </div>
-                <div class="meal-section">
-                  <div class="meal-title">🍽️ Dinner</div>
-                  <div class="meal-instruction">${dayBlock.dinner}</div>
-                </div>
-              </div>
-            `;
-          });
-          output.innerHTML = html;
+          renderInstructions(data.weekly_instructions);
         } else {
-          output.innerHTML = `<p style="color: red;">No instructions found for this week.</p>`;
+          output.innerHTML = `<p style="color: red;">No instructions generated. Try again.</p>`;
         }
       })
       .catch(err => {
         console.error(err);
-        output.innerHTML = `<p style="color: red;">Failed to generate instructions.</p>`;
+        output.innerHTML = `<p style="color: red;">Error generating instructions. Please try again.</p>`;
       });
     }
   </script>

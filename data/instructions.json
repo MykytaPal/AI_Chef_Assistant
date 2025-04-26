@@ -1,0 +1,46 @@
+{
+  "weekly_instructions": [
+    {
+      "day": "Monday",
+      "breakfast": "Blend your favorite fruits, a scoop of yogurt, a splash of milk, and a spoonful of honey until smooth. Add ice if desired.",
+      "lunch": "Place eggs in a pot of cold water. Bring the water to a boil, then turn off the heat and let the eggs sit for 9-12 minutes. Rinse with cold water and peel.",
+      "dinner": "Preheat your oven to 375 degrees. Place the frozen burritos on a baking sheet and bake for 25-30 minutes, or until heated through."
+    },
+    {
+      "day": "Tuesday",
+      "breakfast": "Toast your bread to desired crispness. Spread with butter, jam, or other toppings as desired.",
+      "lunch": "Mix together flour, baking powder, and sugar. In a separate bowl, whisk together milk, egg, and melted butter. Combine the wet and dry ingredients, then pour 1/4 cup of batter onto a hot griddle. Cook until bubbles form, then flip and cook until golden.",
+      "dinner": "Mix together flour, baking powder, sugar, and salt. In a separate bowl, whisk together milk, egg, and melted butter. Combine the wet and dry ingredients, then spoon into a greased muffin tin. Bake at 375 degrees for 20-25 minutes, or until a toothpick comes out clean."
+    },
+    {
+      "day": "Wednesday",
+      "breakfast": "Blend together a ripe banana, a scoop of chocolate protein powder, a spoonful of honey, and a splash of milk until smooth.",
+      "lunch": "Mix together flour, baking powder, and sugar. In a separate bowl, whisk together milk, egg, and melted butter. Pour the batter onto a hot waffle iron and cook until golden and crisp.",
+      "dinner": "Place eggs in a pot of cold water. Bring the water to a boil, then turn off the heat and let the eggs sit for 9-12 minutes. Rinse with cold water and peel."
+    },
+    {
+      "day": "Thursday",
+      "breakfast": "Combine oats, milk, yogurt, and sweetener in a jar. Stir well, then cover and refrigerate overnight. In the morning, stir again and add any desired toppings.",
+      "lunch": "Preheat your oven to 375 degrees. Place the frozen burritos on a baking sheet and bake for 25-30 minutes, or until heated through.",
+      "dinner": "Mix together flour, baking powder, and sugar. In a separate bowl, whisk together milk, egg, and melted butter. Combine the wet and dry ingredients, then pour 1/4 cup of batter onto a hot griddle. Cook until bubbles form, then flip and cook until golden."
+    },
+    {
+      "day": "Friday",
+      "breakfast": "Blend together a ripe peach, a scoop of vanilla protein powder, a spoonful of honey, and a splash of milk until smooth.",
+      "lunch": "Mix together flour, baking powder, sugar, and salt. In a separate bowl, whisk together milk, egg, and melted butter. Combine the wet and dry ingredients, then spoon into a greased muffin tin. Bake at 375 degrees for 20-25 minutes, or until a toothpick comes out clean.",
+      "dinner": "Mix together flour, baking powder, and sugar. In a separate bowl, whisk together milk, egg, and melted butter. Pour the batter onto a hot waffle iron and cook until golden and crisp."
+    },
+    {
+      "day": "Saturday",
+      "breakfast": "Blend together a variety of your favorite fruits, a scoop of yogurt, a splash of milk, and a spoonful of honey until smooth. Add ice if desired.",
+      "lunch": "Mix together flour, baking powder, sugar, and salt. In a separate bowl, whisk together milk, egg, melted butter, and blueberries. Spoon into a greased muffin tin and bake at 375 degrees for 20-25 minutes, or until a toothpick comes out clean.",
+      "dinner": "Toast your bread to desired crispness. Spread with butter, jam, or other toppings as desired."
+    },
+    {
+      "day": "Sunday",
+      "breakfast": "Blend together a handful of spinach, a ripe banana, a scoop of protein powder, a spoonful of honey, and a splash of milk until smooth.",
+      "lunch": "Combine oats, milk, yogurt, and peanut butter in a jar. Stir well, then cover and refrigerate overnight. In the morning, stir again and add any desired toppings.",
+      "dinner": "Boil water or milk in a pot. Stir in the oatmeal packet, reduce heat to low, and cook for 1-2 minutes, stirring occasionally."
+    }
+  ]
+}

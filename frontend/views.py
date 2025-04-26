@@ -54,3 +54,18 @@ def weekly_grocery_list_view(request):
         context = orchestrator.handle_display_weekly_grocery_list(request)
 
     return render(request, "grocery_list.html", context)
+
+# === View: Instruction Delivery Page ===
+def instruction_delivery_view(request):
+    context = orchestrator.handle_instruction_delivery_page(request)
+    return render(request, "instruction_delivery.html", context)
+
+# === View: Generate Weekly Instructions (AJAX) ===
+def weekly_instructions_view(request):
+    if not DEBUG:
+        api_key = request.headers.get("x-api-key")
+        if api_key != EXPECTED_API_KEY:
+            return HttpResponseForbidden("Invalid API Key")
+
+    response = orchestrator.handle_generate_weekly_instructions(request)
+    return JsonResponse(response)
