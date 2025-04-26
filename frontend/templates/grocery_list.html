@@ -1,70 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>🛒 Grocery List</h1>
+  <h1>Weekly Grocery List</h1>
 
-  {% if message %}
-    <p style="color: red;">{{ message }}</p>
+  <form method="post" action="{% url 'weekly_grocery_list' %}">
+    {% csrf_token %}
+    <button type="submit" style="padding: 0.5rem 1rem; background-color: #ff704d; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer;">
+      Generate New Grocery List
+    </button>
+  </form>
+
+  {% if cleaned_list %}
+    <div class="grocery-list-container">
+      <pre style="white-space: pre-wrap; margin-top: 2rem;">{{ cleaned_list }}</pre>
+    </div>
+  {% else %}
+    <p style="margin-top: 2rem;">No grocery list available yet. Click the button above to generate one!</p>
   {% endif %}
 
-  <hr style="margin: 2rem 0;">
-
-  <h2>Weekly Grocery List (Combined with Quantities)</h2>
-  <button onclick="fetchWeeklyGroceryList()">🧠 Generate Weekly Grocery List</button>
-  <div id="weekly-grocery-output" style="margin-top: 1rem;"></div>
-
   <style>
-    .grocery-list {
-      list-style: none;
-      padding: 1rem;
-      border-radius: 12px;
+    .grocery-list-container {
+      margin-top: 2rem;
+      max-width: 700px;
       background-color: #fff9f5;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
       border: 1px solid #ffd2c2;
-      max-width: 600px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-    .grocery-list li {
-      margin-bottom: 0.5rem;
-      padding-left: 1.2rem;
-      position: relative;
-    }
-    .grocery-list li::before {
-      content: "🛍️";
-      position: absolute;
-      left: 0;
-    }
   </style>
-
-  <script>
-    function fetchWeeklyGroceryList() {
-      const output = document.getElementById("weekly-grocery-output");
-      output.innerHTML = "<p>Generating full weekly grocery list...</p>";
-
-      fetch('/weekly-grocery-list/', {
-        headers: {
-          "x-api-key": "{{ api_key }}"
-        }
-      })
-      .then(res => {
-        if (!res.ok) throw new Error("Failed to generate");
-        return res.json();
-      })
-      .then(data => {
-        if (data.grocery_list && Object.keys(data.grocery_list).length > 0) {
-          let html = `<ul class="grocery-list">`;
-          for (const [item, quantity] of Object.entries(data.grocery_list)) {
-            html += `<li>${item}: ${quantity}</li>`;
-          }
-          html += "</ul>";
-          output.innerHTML = html;
-        } else {
-          output.innerHTML = `<p style="color: red;">No grocery list found for the week.</p>`;
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        output.innerHTML = `<p style="color: red;">Failed to generate weekly grocery list.</p>`;
-      });
-    }
-  </script>
 {% endblock %}

@@ -1,91 +1,67 @@
 import os
 import json
-from dotenv import load_dotenv
+from django.conf import settings
 from langchain_openai import ChatOpenAI
-
-# Load environment variables
-load_dotenv()
+from langchain.schema import HumanMessage
 
 class GroceryListGenerationAgent:
     def __init__(self):
-        self.llm = ChatOpenAI(
-            temperature=0.2,
-            model="gpt-4",
-            openai_api_key=os.getenv("OPENAI_API_KEY")
-        )
+        self.data_dir = os.path.join(settings.BASE_DIR, 'data')
+        self.mealplans_path = os.path.join(self.data_dir, 'mealplans.json')
+        self.cookbook_path = os.path.join(self.data_dir, 'cookbook_data.json')
+        self.grocery_list_path = os.path.join(self.data_dir, 'grocery_list.json')
+        self.llm = ChatOpenAI(model="gpt-4", temperature=0)
 
-    def generate_prompt(self, structured_meal_plan: list) -> str:
-        return f"""
-You are a grocery planning assistant.
-
-Given a structured weekly meal plan with days, recipes, ingredients, and instructions, generate a final grocery list.
-
-Rules:
-- For each grocery item, combine the quantities across recipes.
-- Use appropriate units like pieces, grams, cups, tablespoons, etc.
-- If units differ, pick the most common or most reasonable one.
-- Summarize duplicated items correctly (e.g., 2 eggs + 4 eggs = 6 eggs).
-- Only include ingredients, no instructions or recipe names in the final list.
-- Return only a valid JSON object where the key is the grocery item and the value is the total quantity.
-
-Meal Plan Data:
-{json.dumps(structured_meal_plan, indent=2)}
-
-Output Format Example:
-{{
-  "eggs": "6 pieces",
-  "milk": "1 cup",
-  "avocado": "2",
-  "bread": "4 slices",
-  "chicken breast": "400g",
-  ...
-}}
-        """
-
-    def generate_weekly_grocery_list(self, structured_meal_plan: list):
-        prompt = self.generate_prompt(structured_meal_plan)
-        try:
-            response = self.llm.invoke(prompt)
-            grocery_list = json.loads(response.content.strip())
-            print("[✅] Weekly grocery list generated successfully.")
-            return grocery_list
-        except Exception as e:
-            print(f"[❌] Failed to generate grocery list: {e}")
+    def generate_full_weekly_grocery_list(self):
+        if not os.path.exists(self.mealplans_path) or not os.path.exists(self.cookbook_path):
             return {}
 
-# === CLI Usage for Testing ===
-if __name__ == "__main__":
-    sample_meal_plan = [
-        {
-            "day": "Monday",
-            "recipes": [
-                {
-                    "name": "Omelette",
-                    "ingredients": ["2 eggs", "1 tbsp milk", "salt"],
-                    "instructions": "Whisk eggs and cook with milk."
-                },
-                {
-                    "name": "Avocado Toast",
-                    "ingredients": ["1 avocado", "2 slices bread", "salt"],
-                    "instructions": "Mash avocado and spread on toast."
-                }
-            ]
-        },
-        {
-            "day": "Tuesday",
-            "recipes": [
-                {
-                    "name": "Chicken Salad",
-                    "ingredients": ["200g chicken breast", "1 cup lettuce", "1 tomato"],
-                    "instructions": "Grill chicken and toss with veggies."
-                }
-            ]
+        # Load meal plan
+        with open(self.mealplans_path, 'r') as f:
+            meal_plan_data = json.load(f)
+        meal_plan_text = meal_plan_data.get('meal_plan', '')
+
+        # Load cookbook recipes
+        with open(self.cookbook_path, 'r') as f:
+            recipes = json.load(f)
+
+        # Build a raw ingredient list
+        raw_ingredients = []
+
+        recipe_name_to_ingredients = {
+            recipe.get('name', '').lower(): recipe.get('ingredients', []) for recipe in recipes
         }
-    ]
 
-    agent = GroceryListGenerationAgent()
-    grocery_list = agent.generate_weekly_grocery_list(sample_meal_plan)
+        for line in meal_plan_text.splitlines():
+            for recipe_name, ingredients in recipe_name_to_ingredients.items():
+                if recipe_name in line.lower():
+                    raw_ingredients.extend(ingredients)
 
-    print("\n🛒 Final Grocery List for the Week:")
-    for item, qty in grocery_list.items():
-        print(f" - {item}: {qty}")
+        if not raw_ingredients:
+            return {}
+
+        # Build smart prompt
+        prompt = (
+            "You are a helpful assistant tasked with preparing a grocery list for a week's worth of meals.\n"
+            "Combine the following ingredients into a clean grocery list.\n"
+            "Group duplicate ingredients together, sum the quantities where possible, and present it in a bulleted list.\n"
+            "If quantities are missing or inconsistent, make your best guess.\n"
+            "Format the list neatly without headers:\n\n"
+        )
+
+        for ingredient in raw_ingredients:
+            prompt += f"- {ingredient}\n"
+
+        # Query LLM
+        response = self.llm.invoke([
+            HumanMessage(content=prompt)
+        ])
+
+        cleaned_list_text = response.content
+
+        # === SAVE the cleaned list ===
+        os.makedirs(self.data_dir, exist_ok=True)
+        with open(self.grocery_list_path, 'w') as f:
+            json.dump({"grocery_list": cleaned_list_text}, f, indent=2)
+
+        return {"cleaned_list": cleaned_list_text}
