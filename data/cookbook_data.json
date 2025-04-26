@@ -1,17 +1,12 @@
 [
   {
-    "name": "Breakfast Favorites",
+    "name": "Breakfast Favorites Smoothie Template",
     "ingredients": [
-      "1 \u00bd cups liquid like water, milk, or juice (can add more or less depending on how smooth you want your smoothie to be)",
+      "1 \u00bd cups liquid like water, milk, or juice",
       "1 \u00bd to 2 cups of your favorite fruits, fresh or frozen",
       "\u00bd cup Greek yogurt (plain or flavored)",
       "\u00bd cup ice for more liquid and texture",
-      "Optional add ins:",
-      "- \u00bd cup leafy greens",
-      "- 1 tsp chia seeds and/or flax seeds",
-      "- Sweetener of your choice",
-      "- 1 scoop protein powder",
-      "- 1 tbsp. peanut or nut butter"
+      "Optional add ins: \u00bd c leafy greens, 1 tsp chia seeds and/or flax seeds, Sweetener of your choice, 1 scoop protein powder, 1 tbsp. peanut or nut butter"
     ],
     "instructions": "1. Combine liquid, fruits, Greek yogurt, and ice in a blender. 2. Blend until smooth. 3. Add optional add ins as desired. 4. Enjoy your customizable smoothie!"
   },
@@ -24,7 +19,7 @@
       "\u00bc cup dry oats",
       "Small handful of nuts (walnuts, almonds, or pecans are delicious)"
     ],
-    "instructions": "Put all ingredients in blender. Blend until smooth (it will remain slightly lumpy because of the oats and nuts). Enjoy your chocolate banana breakfast shake!"
+    "instructions": "1. Put all ingredients in blender. 2. Blend until smooth (it will remain slightly lumpy because of the oats and nuts). 3. Enjoy your chocolate banana breakfast shake!"
   },
   {
     "name": "Vanilla-Peach Smoothie",
@@ -120,7 +115,7 @@
       "Sliced cucumbers",
       "Toast toppings of choice (jam, cheese, fruit, vegetables)"
     ],
-    "instructions": "1. Spread nut butter on a slice of toast. Put sliced bananas on top and drizzle with honey. 2. Cook an egg as desired. Mash avocado and spread it on toast. Place the egg on top and sprinkle with salt and pepper. 3. Top toast with hummus and cooked veggies. 4. Spread Nutella on toast and top with sliced fruit. 5. Spread low-fat herbed cream cheese on toast and top with sliced cucumbers. 6. Get creative with your toast toppings using ingredients you have on hand."
+    "instructions": "1. Spread nut butter on a slice of toast. Add sliced bananas and drizzle with honey. 2. Cook an egg as desired. Mash avocado and spread on toast. Place the egg on top and sprinkle with salt and pepper. 3. Top toast with hummus and cooked veggies. 4. Spread Nutella on toast and add sliced fruit on top. 5. Spread low-fat herbed cream cheese on toast and top with sliced cucumbers. 6. Get creative with your toast toppings using ingredients you have on hand."
   },
   {
     "name": "Frozen Breakfast Burritos",
@@ -133,7 +128,7 @@
       "Green pepper",
       "Salsa"
     ],
-    "instructions": "1. Scramble the eggs and saut\u00e9 the potatoes and green peppers. Cook the bacon or sausage. 2. Soften tortillas in the microwave. 3. Lay out tortillas and add filling ingredients. Roll up and wrap in plastic wrap, then place in a freezer bag. 4. In the morning, heat in the microwave until warmed."
+    "instructions": "1. Scramble the eggs, saut\u00e9 the potatoes and green peppers, and cook the bacon or sausage. 2. Soften tortillas in the microwave. 3. Fill tortillas with ingredients, roll up, and wrap in plastic wrap. Place in a freezer bag. 4. In the morning, heat in the microwave for 3-5 minutes or until warmed."
   },
   {
     "name": "Boiled Eggs",
@@ -141,20 +136,20 @@
       "Eggs",
       "Water"
     ],
-    "instructions": "1. Fill a pot with about 4-5 cups of water (or more if your pot is larger) to cover the eggs completely.\n2. Bring the water to a boil.\n3. Carefully add the eggs to the boiling water with a spoon.\n4. Boil for 10 minutes for hard-boiled eggs, 8-9 minutes for slightly softer yolks, or 6-7 minutes for soft-boiled eggs."
+    "instructions": "1. Fill a pot with about 4-5 cups of water (or more if your pot is larger). You want the water to cover the eggs you\u2019ll be cooking completely. 2. Bring the water to a boil. 3. Very carefully add the eggs to the boiling water with a spoon making sure not to drop the eggs in the pot or on top of another egg. 4. Let the water keep boiling with the eggs in it for 10 minutes for a hard-boiled egg (yolk fully cooked). Boil for 8-9 minutes for a yolk that is a little softer in the middle. Boil for 6-7 minutes for soft-boiled egg (yolk is runnier)."
   },
   {
     "name": "Pancakes",
     "ingredients": [
-      "1 \u00bc cups flour",
+      "1 \u00bc cups flour (use some white and some wheat flour for a healthier option)",
       "2 tsp. sugar",
       "2 tsp. baking powder",
       "1 beaten egg",
-      "1 cup milk",
-      "1 tbsp. oil",
+      "1 cup milk of your choice",
+      "1 tbsp. oil (or substitute with plain low-fat Greek or regular yogurt)",
       "\u00bd tsp salt"
     ],
-    "instructions": "1. Stir together flour, sugar, baking powder, and salt. 2. Combine egg, milk, and oil in a separate bowl. Add to flour mixture and stir until blended. 3. Cook on a hot, greased skillet to make about eight 4-inch pancakes."
+    "instructions": "1. Stir together flour, sugar, baking powder, and salt. 2. Combine egg, milk, and oil (or yogurt) in a separate bowl. Add all at once to flour mixture; stir until blended but still slightly lumpy. 3. Cook on a hot, lightly greased skillet. Makes about eight 4-inch pancakes."
   },
   {
     "name": "Basic Muffins",
@@ -164,10 +159,10 @@
       "2 tsp. baking powder",
       "\u00bd tsp. salt",
       "\u00be cup milk",
-      "1/3 cup oil",
-      "1 egg, lightly beaten"
+      "1/3 cup oil (or substitute with plain low-fat Greek or regular yogurt)",
+      "1 egg lightly beaten"
     ],
-    "instructions": "1. Mix flour, sugar, baking powder, and salt. 2. Combine milk, oil, and egg in a separate bowl. Add to flour mixture and stir. 3. Bake in muffin tins for grab-and-go breakfast or snack."
+    "instructions": "This is a great make-ahead recipe since muffins are an easy grab-and-go breakfast or snack."
   },
   {
     "name": "Blueberry Muffins",
@@ -181,7 +176,7 @@
       "\u00be cup fresh or frozen blueberries",
       "1 tsp zested lemon peel (optional)"
     ],
-    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, and egg. Make a well in the center of the dry ingredients. 4. Pour in the wet ingredients and stir until moistened, leaving the mixture slightly lumpy. 5. Fill sprayed muffin pans about 2/3 full. Bake 20-25 minutes. Makes 10-12."
+    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, and egg. Make a well in the center of the dry ingredients. 4. Pour in the wet ingredients and stir until moistened, leaving the mixture slightly lumpy. 5. Fill sprayed muffin pans about 2/3 full. 6. Bake for 20-25 minutes. 7. Makes 10-12 muffins."
   },
   {
     "name": "Cranberry Orange Muffins",
@@ -196,7 +191,7 @@
       "\u00bc cup more sugar",
       "Orange zest to taste"
     ],
-    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, and egg. Make a well in the center of the dry ingredients. 4. Combine cranberries, sugar, and orange zest. Fold into batter. 5. Fill sprayed muffin pans about 2/3 full. Bake 20-25 minutes. Makes 10-12."
+    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, and egg. Make a well in the center of the dry ingredients. 4. Combine cranberries, sugar, and orange zest. Fold into batter. 5. Fill sprayed muffin pans about 2/3 full. 6. Bake for 20-25 minutes. 7. Makes 10-12 muffins."
   },
   {
     "name": "Pumpkin Muffins",
@@ -212,7 +207,7 @@
       "\u00bd tsp ground cinnamon",
       "\u00bd tsp ground nutmeg"
     ],
-    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, egg, and pumpkin. Make a well in the center of the dry ingredients. 4. Stir cinnamon and nutmeg into flour mixture. Pour in the wet ingredients and stir until moistened, leaving the mixture slightly lumpy. 5. Fill sprayed muffin pans about 2/3 full. Bake 20-25 minutes. Makes 10-12."
+    "instructions": "1. Preheat oven to 400 \u00b0F. 2. Mix dry ingredients together well. 3. In a separate bowl, mix milk, oil, egg, and pumpkin. 4. Stir cinnamon and nutmeg into flour mixture. 5. Fill sprayed muffin pans about 2/3 full. 6. Bake for 20-25 minutes. 7. Makes 10-12 muffins."
   },
   {
     "name": "Waffles",
@@ -225,6 +220,6 @@
       "\u00bd cup cooking oil",
       "2 egg whites"
     ],
-    "instructions": "1. In a large mixing bowl stir together flour, baking powder, and salt. 2. In a small mixing bowl beat egg yolks with a fork. Beat in milk and cooking oil. 3. Add wet ingredients to flour mixture and stir until blended but still slightly lumpy. 4. In a smaller bowl, beat the egg whites until stiff peaks form. 5. Gently fold beaten egg whites into the flour-milk mixture. 6. Pour batter onto preheated waffle iron. Makes about 7 round waffles or 3 nine-inch waffles."
+    "instructions": "1. In a large mixing bowl, stir together flour, baking powder, and salt. 2. In a small mixing bowl, beat egg yolks with a fork. Beat in milk and cooking oil. 3. Add wet ingredients to dry ingredients and stir until blended but still slightly lumpy. 4. In a smaller bowl, beat egg whites until stiff peaks form. 5. Gently fold beaten egg whites into the flour-milk mixture. 6. Pour batter onto preheated waffle iron. 7. Makes about 7 round waffles or 3 nine-inch waffles."
   }
 ]

@@ -3,6 +3,13 @@
 {% block content %}
   <h1>Weekly Meal Plan</h1>
 
+  <form method="post" action="{% url 'meal_plan' %}">
+    {% csrf_token %}
+    <button type="submit" style="padding: 0.5rem 1rem; background-color: #ff704d; color: white; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer;">
+      Generate New Meal Plan
+    </button>
+  </form>
+
   {% if day_blocks %}
     <div class="meal-plan-container">
       {% for block in day_blocks %}
@@ -18,7 +25,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <p>No meal plan available yet.</p>
+    <p>No meal plan available yet. Click the button above to generate one!</p>
   {% endif %}
 
   <style>
