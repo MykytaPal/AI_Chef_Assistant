@@ -39,7 +39,7 @@
 
     #layout {
       display: flex;
-      height: calc(100vh - 120px); /* 60 header + 60 footer */
+      height: calc(100vh - 120px);
       margin-top: 60px;
       margin-bottom: 60px;
     }
@@ -142,6 +142,12 @@
          class="{% if '/grocery-list' in request.path or '/recipes' in request.path %}active-link{% endif %}">
          <i class="fas fa-shopping-cart"></i>
          <span>Grocery List</span>
+      </a>
+
+      <a href="{% url 'instruction_delivery' %}" title="Instructions"
+         class="{% if request.path == '/instructions/' %}active-link{% endif %}">
+         <i class="fas fa-clipboard-list"></i>
+         <span>Instructions</span>
       </a>
 
       <a href="{% url 'recipe_library' %}" title="Recipe Library"
