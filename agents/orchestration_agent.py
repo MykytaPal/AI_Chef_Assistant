@@ -8,6 +8,7 @@ from agents.user_profiling_agent import UserProfilingAgent
 from agents.recipe_library_agent import RecipeLibraryAgent
 from agents.grocery_list_generation_agent import GroceryListGenerationAgent
 from agents.meal_plan_generation_agent import MealPlanGenerationAgent
+from agents.instruction_delivery_agent import InstructionDeliveryAgent
 
 EXPECTED_API_KEY = os.getenv("API_KEY")
 
@@ -111,7 +112,6 @@ class OrchestrationAgent:
         return {"day_blocks": day_blocks}
 
     def handle_generate_meal_plan(self, request):
-        from agents.meal_plan_generation_agent import MealPlanGenerationAgent
 
         if not request.session.get("cookbook_uploaded"):
             messages.error(request, "Please upload a cookbook first.")
@@ -149,7 +149,6 @@ class OrchestrationAgent:
         return {"cleaned_list": cleaned_list}
 
     def handle_generate_weekly_grocery_list(self, request):
-        from agents.grocery_list_generation_agent import GroceryListGenerationAgent
 
         try:
             agent = GroceryListGenerationAgent()
@@ -162,3 +161,34 @@ class OrchestrationAgent:
         except Exception as e:
             print(f"[❌] Error generating weekly grocery list: {e}")
             return {"grocery_list": {}, "message": "Failed to generate grocery list"}
+        
+    def handle_instruction_delivery_page(self, request):
+
+        agent = InstructionDeliveryAgent()
+        weekly_instructions = agent.load_weekly_instructions()
+
+        if not request.session.get("cookbook_uploaded") or not os.path.exists(self.cookbook_path):
+            messages.error(request, "Please upload a cookbook first.")
+            return {"weekly_instructions": weekly_instructions}
+
+        return {
+            "api_key": os.getenv("API_KEY"),
+            "weekly_instructions": weekly_instructions
+        }
+
+    def handle_generate_weekly_instructions(self, request):
+
+        if not request.session.get("cookbook_uploaded") or not os.path.exists(self.cookbook_path):
+            return {"error": "No cookbook uploaded"}
+
+        meal_plan_text = request.session.get("last_generated_meal_plan")
+        if not meal_plan_text:
+            return {"error": "No meal plan found"}
+
+        try:
+            agent = InstructionDeliveryAgent()
+            weekly_instructions = agent.generate_weekly_instructions(meal_plan_text)
+            return {"weekly_instructions": weekly_instructions}
+        except Exception as e:
+            print(f"[❌] Error generating weekly instructions: {e}")
+            return {"error": "Failed to generate instructions"}

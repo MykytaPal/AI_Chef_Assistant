@@ -1,54 +1,54 @@
 import os
 import json
-from dotenv import load_dotenv
+from django.conf import settings
 from langchain_openai import ChatOpenAI
-
-# Load API Key
-load_dotenv()
+from langchain.schema import HumanMessage
 
 class InstructionDeliveryAgent:
     def __init__(self):
-        self.llm = ChatOpenAI(
-            temperature=0.2,
-            model_name="gpt-3.5-turbo",
-        )
+        self.data_dir = os.path.join(settings.BASE_DIR, 'data')
+        self.mealplans_path = os.path.join(self.data_dir, 'mealplans.json')
+        self.instructions_path = os.path.join(self.data_dir, 'instructions.json')
+        self.llm = ChatOpenAI(model="gpt-4", temperature=0)
 
     def generate_weekly_instructions(self, meal_plan_text):
-        prompt = f"""
-You are a smart AI meal assistant.
+        if not meal_plan_text:
+            return []
 
-Given this weekly meal plan, generate clear, simple, **day-by-day** cooking instructions.
+        prompt = (
+            "You are a helpful cooking assistant. Based on the following meal plan, generate simple and clear cooking instructions for each meal (breakfast, lunch, dinner) for each day.\n\n"
+            "Meal Plan:\n"
+            f"{meal_plan_text}\n\n"
+            "Format the output as JSON, like this:\n"
+            "[\n"
+            "  {\"day\": \"Monday\", \"breakfast\": \"...\", \"lunch\": \"...\", \"dinner\": \"...\"},\n"
+            "  {\"day\": \"Tuesday\", \"breakfast\": \"...\", \"lunch\": \"...\", \"dinner\": \"...\"},\n"
+            "  ...\n"
+            "]"
+        )
 
-For **each day**, provide:
-- Breakfast instructions
-- Lunch instructions
-- Dinner instructions
-
-Return a **JSON array** like this:
-[
-  {{
-    "day": "Monday",
-    "breakfast": "Instructions for breakfast...",
-    "lunch": "Instructions for lunch...",
-    "dinner": "Instructions for dinner..."
-  }},
-  ...
-]
-
-ONLY return valid parsable JSON. Do NOT add any explanations.
-
-Meal Plan:
-{meal_plan_text}
-"""
+        response = self.llm.invoke([
+            HumanMessage(content=prompt)
+        ])
 
         try:
-            response = self.llm.invoke(prompt)
-            if not response or not response.content.strip():
-                raise ValueError("Empty response from LLM")
-            
-            weekly_instructions = json.loads(response.content.strip())
-            return weekly_instructions
+            weekly_instructions = json.loads(response.content)
+        except json.JSONDecodeError:
+            weekly_instructions = []
 
-        except Exception as e:
-            print(f"[❌] Failed to generate instructions: {e}")
-            return []
+        # Save instructions to file
+        os.makedirs(self.data_dir, exist_ok=True)
+        with open(self.instructions_path, 'w') as f:
+            json.dump({"weekly_instructions": weekly_instructions}, f, indent=2)
+
+        return weekly_instructions
+
+    def load_weekly_instructions(self):
+        if os.path.exists(self.instructions_path) and os.path.getsize(self.instructions_path) > 0:
+            try:
+                with open(self.instructions_path, 'r') as f:
+                    data = json.load(f)
+                    return data.get("weekly_instructions", [])
+            except json.JSONDecodeError:
+                return []
+        return []
