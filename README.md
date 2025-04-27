@@ -5,6 +5,7 @@
 1. Create virtual env: python3.12 -m venv .venv
 2. Go into virtual env: source .venv/bin/activate
 3. Install requirements: pip install -r requirements.txt
+4. Add "OPENAI_API_KEY" variable in your .env file with your OpenAI API key
 
 ## To run the project
 
